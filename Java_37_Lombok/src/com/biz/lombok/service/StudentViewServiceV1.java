@@ -16,19 +16,26 @@ public class StudentViewServiceV1 extends StudentViewServiceABS {
 		stdList = new ArrayList<StudentVO>();
 	}
 
-	@Override
-	public void view() {
+	public void title() {
 		System.out.println("===================================================");
 		System.out.println("학생정보");
 		System.out.println("===================================================");
 		System.out.println("학번\t이름\t전화번호\t학년\t주소");
 		System.out.println("---------------------------------------------------");
+	}
+	
+	public void body(StudentVO vo) {
+		System.out.print(vo.getS_num() + "\t");
+		System.out.print(vo.getS_name() + "\t");
+		System.out.print(vo.getS_tel() + "\t");
+		System.out.print(vo.getS_grade() + "\t");
+		System.out.print(vo.getS_addr() + "\n");
+	}
+	@Override
+	public void view() {
+		this.title();
 		for (StudentVO vo : stdList) {
-			System.out.print(vo.getS_num() + "\t");
-			System.out.print(vo.getS_name() + "\t");
-			System.out.print(vo.getS_tel() + "\t");
-			System.out.print(vo.getS_dept() + "\t");
-			System.out.print(vo.getS_addr() + "\n");
+			this.body(vo);
 		}
 		System.out.println("===================================================");
 
@@ -36,22 +43,20 @@ public class StudentViewServiceV1 extends StudentViewServiceABS {
 
 	@Override
 	public void search(String strName) {
+		this.title();
 		for (StudentVO vo : stdList) {
 			if (vo.getS_name().contains(strName))
-				this.view();
+				this.body(vo);
 		}
 	}
 
 	@Override
-	public void search(int intGrade) {
-	}
-
-	@Override
 	public void search(int grGrade, int lessGrade) {
+		this.title();
 		for (StudentVO vo : stdList) {
-			int dept = Integer.valueOf(vo.getS_dept());
-			if (dept >= grGrade && dept <= lessGrade) {
-				this.view();
+			int grade = Integer.valueOf(vo.getS_grade());
+			if (grade >= grGrade && grade <= lessGrade) {
+				this.body(vo);
 			}
 		}
 	}

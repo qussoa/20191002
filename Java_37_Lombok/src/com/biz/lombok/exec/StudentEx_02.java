@@ -26,9 +26,8 @@ public class StudentEx_02 {
 		try {
 			sRead.readStudent(fileName);
 			List<StudentVO> stdList = sRead.getStdList();
-
 			sView.setStdList(stdList);
-			 sView.view();
+			sView.view();
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -49,7 +48,7 @@ public class StudentEx_02 {
 			if (intM == 1) {
 				System.out.print("학생 이름 : ");
 				String strName = scan.nextLine();
-				sView.search(strName);
+				sView.search(strName);      
 			} else if (intM == 2) {
 				System.out.print("최저학년 : ");
 				String grGrade = scan.nextLine();
